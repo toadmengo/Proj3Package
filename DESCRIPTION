@@ -1,0 +1,23 @@
+Package: Proj3Package
+Title: Provides Useful Statistical Functions
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Todd",
+           family = "Meng",
+           role = c("aut", "cre"),
+           email = "todd.meng@uw.edu")
+Description: Provides useful statistical functions.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    class,
+    magrittr,
+    data.table,
+    randomForest,
+    stats,
+    tidyr,
+    palmerpenguins,
+    dplyr
