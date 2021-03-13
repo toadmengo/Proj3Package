@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Todd",
            family = "Meng",
            role = c("aut", "cre"),
-           email = "todd.meng@uw.edu")
+           email = "toddmeng@uw.edu")
 Description: Provides useful statistical functions.
 License: GPL (>= 3)
 Encoding: UTF-8
