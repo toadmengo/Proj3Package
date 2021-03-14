@@ -18,3 +18,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(Proj3Package)
 ```
+
+```{r}
+print("hello")
+```
