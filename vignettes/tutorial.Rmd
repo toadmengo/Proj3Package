@@ -15,10 +15,42 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Installing Package
+
+This package contains useful statistical functions for t-tests, linear regression, K nearest neighbors cross-validation, and random forest cross-validation. It also contains the data my_gapminder. To install from github, use the devtools package.
+
+```{r, eval=FALSE}
+library(devtools)
+# basic install
+install_github("toadmengo/Proj3Package")
+# install with vignette
+install_github("toadmengo/Proj3Package", 
+               build_vignette = TRUE, build_opts = c())
+```
+
 ```{r setup}
 library(Proj3Package)
 ```
 
+### my_t.test
+
+my_t.test runs a t-test on data. It has parameters: x is the numeric data, alternative is a character input that signifies the type of t-test, and mu is the null hypothesis value. alternative must be either "greater", "less", or "two.sided". The following demonstrates a two-sided t-test on the my_gapminder life-expectancy data. It tests the hypothesis that mu != 60.
+
 ```{r}
-print("hello")
+x <- my_gapminder$lifeExp
+# two sided test
+my_t.test(x, "two.sided", 60)
+```
+
+We can test for mu < 60.
+
+```{r}
+# one-sided less-than test
+my_t.test(x, "less", 60)
+```
+
+We can test mu >60.
+```{r}
+# one-sided less-than test
+my_t.test(x, "greater", 60)
 ```
