@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Installing Package
+### Installing Package
 
 This package contains useful statistical functions for t-tests, linear regression, K nearest neighbors cross-validation, and random forest cross-validation. It also contains the data my_gapminder. To install from github, use the devtools package.
 
@@ -42,6 +42,8 @@ x <- my_gapminder$lifeExp
 my_t.test(x, "two.sided", 60)
 ```
 
+Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is greater than 60.
+
 We can test for mu < 60.
 
 ```{r}
@@ -49,8 +51,14 @@ We can test for mu < 60.
 my_t.test(x, "less", 60)
 ```
 
-We can test mu >60.
+Using α = 0.05 as the cut-off p-value, we would reject the null hypothesis, as the t-test yields a p-value less than α. There is strong evidence to suggest that the mean life expectancy is less than 60.
+
+We can test mu > 60.
+
 ```{r}
 # one-sided less-than test
 my_t.test(x, "greater", 60)
 ```
+
+Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is not equal to 60.
+
