@@ -17,7 +17,7 @@ my_knn_cv(train, cl, k_nn, k_cv)
 }
 \value{
 List with elements:
-clas - Factor of classification using the training data,
+class- Factor of classification using the training data,
 cv_err - Numeric representing cross-validation error.
 }
 \description{

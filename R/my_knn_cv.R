@@ -8,7 +8,7 @@
 #' @param k_cv Integer for number of folds in cross validation.
 #'
 #' @return List with elements:
-#' clas - Factor of classification using the training data,
+#' class- Factor of classification using the training data,
 #' cv_err - Numeric representing cross-validation error.
 #'
 #' @examples
