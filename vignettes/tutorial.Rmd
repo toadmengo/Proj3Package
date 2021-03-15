@@ -96,5 +96,5 @@ ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
   geom_jitter()
 ```
 
-The fitted vs actual plot seems to put heavy emphasis on continent, likely because GDP per-capita is only a strong determiner of life expectancy among wealthy nations. This is probably why the fitted values form flat layers, as the model is mostly predicting based on continent when GDP per-capita is low. When GDP per-capita is higher, it influences the model more, creating a less-flat shape of the graph. This may indicate that the model is not as strong when predicting life expectancy for low GDP per-capita nations, and that using a higher order polynomial for GDP per-capita may create a better fit.
+The Fitted vs Actual plot seems to put heavy emphasis on continent, likely because GDP per-capita is only a strong determiner of life expectancy among wealthy nations. This is probably why the fitted values form flat layers, as the model is mostly predicting based on continent when GDP per-capita is low. When GDP per-capita is higher, it influences the model more, creating a less-flat shape of the graph. This may indicate that the model is not as strong when predicting life expectancy for low GDP per-capita nations, and that using a higher order polynomial for GDP per-capita may create a better fit.
 
