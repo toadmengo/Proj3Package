@@ -90,7 +90,7 @@ fitted <- predict(lm(lifeExp ~ gdpPercap + continent, my_gapminder),
                  my_gapminder)
 # get the actual values
 actual <- my_gapminder$lifeExp
-dat <- cbind(preds, actual)
+dat <- cbind(fitted, actual)
 # plot actual vs fitted
 ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
   geom_jitter()
