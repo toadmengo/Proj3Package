@@ -34,7 +34,10 @@ library(Proj3Package)
 
 ### my_t.test
 
-my_t.test runs a t-test on data. It has parameters: x is the numeric data, alternative is a character input that signifies the type of t-test, and mu is the null hypothesis value. alternative must be either "greater", "less", or "two.sided". The following demonstrates a two-sided t-test on the my_gapminder life-expectancy data. It tests the hypothesis that mu != 60.
+`my_t.test` runs a t-test on data. It has parameters: `x` is the numeric data, `alternative `is a character input that signifies the type of t-test, and `mu` is the null hypothesis value. `alternative` must be either "greater", "less", or "two.sided". 
+
+The following demonstrates a two-sided t-test on the `my_gapminder` `lifeExp` data. 
+This tests the hypothesis that mu ≠ 60.
 
 ```{r}
 x <- my_gapminder$lifeExp
@@ -61,4 +64,37 @@ my_t.test(x, "greater", 60)
 ```
 
 Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is not equal to 60.
+
+### my_lm
+
+`my_lm` fits a linear regression model. It takes in `lm_form`, a formula, and `lm_data`, the data to be fitted. It returns the coefficients of the fitted linear function, the standard errors, the t-values, and the p-values.
+
+To demonstrate, we'll fit a linear model using `my_gapminder`, with `lifeExp` as response variable and `gdpPercap` and `continent` as explanatory variables.
+
+```{r}
+# fit a linear model
+x <- my_lm(lifeExp ~ gdpPercap + continent, my_gapminder)
+x
+```
+
+This gives us the estimates for the coefficients for each explanatory variable. Looking at the `gdpPercap` variable, we see that the linear model estimates that every dollar increase in GDP per-capita correlates with an increase of `r round(x[2], digits = 6)` in life expectancy.
+
+We can also analyze the p-values. Looking at the `gdpPercap` variable, the null hypothesis is that the coefficient ß = 0, and the alternative is ß ≠ 0. Using α = 0.05 as the cut-off p-value, we would reject the null hypothesis in favor of the alternative hypothesis, as the p-value is much smaller than α. There is strong evidence to indicate that there is a correlation between GDP per-capita and life expectancy.
+
+Additionally, we can plot the Actual vs Fitted values.
+
+```{r}
+library(ggplot2)
+# get the fitted values
+fitted <- predict(lm(lifeExp ~ gdpPercap + continent, my_gapminder), 
+                 my_gapminder)
+# get the actual values
+actual <- my_gapminder$lifeExp
+dat <- cbind(preds, actual)
+# plot actual vs fitted
+ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
+  geom_jitter()
+```
+
+The fitted vs actual plot seems to put heavy emphasis on continent, likely because GDP per-capita is only a strong determiner of life expectancy among wealthy nations. This is probably why the fitted values form flat layers, as the model is mostly predicting based on continent when GDP per-capita is low. When GDP per-capita is higher, it influences the model more, creating a less-flat shape of the graph. This may indicate that the model is not as strong when predicting life expectancy for low GDP per-capita nations, and that using a higher order polynomial for GDP per-capita may create a better fit.
 
