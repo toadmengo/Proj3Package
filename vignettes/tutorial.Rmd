@@ -135,3 +135,54 @@ cbind(k_nn, training_error, CV_error)
 
 Looking at the data, we see that the training error is lowest with k_nn = 1, meaning that the best model using
 the training data would be when k_nn = 1. In practice, we would use the k_nn with the lowest cross-validation error, which in this case is also k_nn = 1. We would use the lowest cross-validation error to guide our decision, since the training data is fitted for itself and the best-fitting model may overfit. As a result, we use cross-validation misclassification error to decide which model to use. In k-fold cross validation, the data is divided into k folds, and k_nn is performed, where one fold is the test set and the other folds are the training data. The errors of each fold are averaged, which yields the CV error. This lets us choose a model based on misclassification error without being too worried that the training data is overfitting.
+
+### my_rf_cv
+
+This function performs random forest k-fold cross-validation on `my_penguins`, with `bill_length_mm`, `bill_depth_mm`, and `flipper_length_mm` predicting `body_mass_g`. The following plots the Mean Squared Error of 30 Random Forest Simulations for each k-fold of 2, 5, 10.
+
+```{r}
+# create empty vectors
+MSE <- c(rep(NA, 90))
+
+j = 0
+for (k in c(2, 5, 10)) {
+  for (i in c(1:30)) {
+    # calculate MSE for random forest
+    MSE[j + i] <- my_rf_cv(k)
+  }
+  j = j + 30
+}
+# track the group
+rf_group <- c(rep(2, 30), rep(5, 30), rep(10, 30))
+rf_group <- as.factor(rf_group)
+rf_results <- data.frame(k = rf_group, MSE = MSE)
+
+# plot the box plot of the errors
+ggplot(data = rf_results, mapping = aes(x = k, y = MSE)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of MSE for 30 Random Forest Simulations per k-fold") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+We can also find the mean and standard deviation of these k-fold groups.
+
+```{r}
+# create matrix
+rf_stat <- matrix(nrow = 3, ncol = 2)
+colnames(rf_stat) <- c("mean", "Sd. dev")
+rownames(rf_stat) <- as.character(c(2, 5, 10))
+for (i in c(2, 5, 10)) {
+  # filter by k group
+  dat <- subset(rf_results, k == i)
+  # get the mean
+  rf_stat[as.character(i) ,"mean"] <- mean(dat$MSE)
+  # get st dev
+  rf_stat[as.character(i) ,"Sd. dev"] <- sd(dat$MSE)
+}
+rf_stats <- as.table(rf_stat)
+rf_stats
+```
+
+Based on the results, we can see that the mean cross-validation errors are similar across all k, but more variable when k is lower. For the means, the error is slightly higher among lower k-values, likely because there's less training data with less k-folds, but this difference isn't significant. However, the standard deviation is much higher with lower k, as there are less Mean Squared Errors to average when k is low, leading to more variance in the data.
+
