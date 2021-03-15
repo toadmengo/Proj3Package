@@ -101,8 +101,37 @@ ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
 
 The Fitted vs Actual plot seems to put heavy emphasis on continent, likely because GDP per-capita is only a strong determiner of life expectancy among wealthy nations. This is probably why the fitted values form flat layers, as the model is mostly predicting based on continent when GDP per-capita is low. When GDP per-capita is higher, it influences the model more, creating a less-flat shape of the graph. This may indicate that the model is not as strong when predicting life expectancy for low GDP per-capita nations, and that using a higher order polynomial for GDP per-capita may create a better fit.
 
+### my_knn_cv
 
+This function predicts a category using k-nearest neighbor and performs k-fold cross validation. It uses parameters: `train`, the explanatory variables from training data. `cl`, the response variables. `k_nn`, an integer representing the number of nearest neighbors. And `k_cv`, an integer for the number of folds in the cross-validation. It returns a list with `class`, a factor of the predicted response variables, and `cv_err`, a numeric representing the CV error.
 
+Here, we will use `my_knn_cv` on the `my_penguins` data, using `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, and `body_mass_g` to predict `species`. We will investigate the best `k_nn` from 1 to 10, using `k_cv` = 5.
 
+```{r}
+# get training and output data
+train <- my_penguins[c("bill_length_mm", 
+                    "bill_depth_mm", 
+                    "flipper_length_mm", 
+                    "body_mass_g",
+                    "species")] %>%
+  na.omit()
+cl <- train$species
+train <- train[!(names(train) %in% "species")]
+CV_error <- c(rep(NA, 10))
+training_error <- c(rep(NA, 10))
+for (k_nn in 1:10) {
+  # perform knn and cross validation
+  output <- my_knn_cv(train, cl, k_nn = k_nn, k_cv = 5)
+  # record the cross-validation err
+  CV_error[k_nn] <- output$cv_err
+  # record the training error
+  training_err <- sum(output$class != cl) / length(cl)
+  training_error[k_nn] <- training_err
+}
+k_nn <- c(1:10)
+cbind(k_nn, training_error, CV_error)
 
+```
 
+Looking at the data, we see that the training error is lowest with k_nn = 1, meaning that the best model using
+the training data would be when k_nn = 1. In practice, we would use the k_nn with the lowest cross-validation error, which in this case is also k_nn = 1. We would use the lowest cross-validation error to guide our decision, since the training data is fitted for itself and the best-fitting model may overfit. As a result, we use cross-validation misclassification error to decide which model to use. In k-fold cross validation, the data is divided into k folds, and k_nn is performed, where one fold is the test set and the other folds are the training data. The errors of each fold are averaged, which yields the CV error. This lets us choose a model based on misclassification error without being too worried that the training data is overfitting.

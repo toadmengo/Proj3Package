@@ -19,7 +19,6 @@ Imports:
     randomForest,
     stats,
     tidyr,
-    palmerpenguins,
     dplyr,
     tibble,
     ggplot2

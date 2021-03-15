@@ -3,12 +3,12 @@
 #' Performs a KNN cross-validation test.
 #'
 #' @param train Dataframe with training data, without response variable.
-#' @param cl Dataframe of response variables.
+#' @param cl Factor of response variables.
 #' @param k_nn Integer representing number of nearest neighbors.
 #' @param k_cv Integer for number of folds in cross validation.
 #'
 #' @return List with elements:
-#' class- Factor of classification using the training data,
+#' class - Factor of classification using the training data,
 #' cv_err - Numeric representing cross-validation error.
 #'
 #' @examples

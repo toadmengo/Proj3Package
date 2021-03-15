@@ -9,7 +9,7 @@ my_knn_cv(train, cl, k_nn, k_cv)
 \arguments{
 \item{train}{Dataframe with training data, without response variable.}
 
-\item{cl}{Dataframe of response variables.}
+\item{cl}{Factor of response variables.}
 
 \item{k_nn}{Integer representing number of nearest neighbors.}
 
@@ -17,7 +17,7 @@ my_knn_cv(train, cl, k_nn, k_cv)
 }
 \value{
 List with elements:
-class- Factor of classification using the training data,
+class - Factor of classification using the training data,
 cv_err - Numeric representing cross-validation error.
 }
 \description{

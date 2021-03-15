@@ -15,7 +15,7 @@
 #' @export
 my_rf_cv <- function(k) {
   # select the data we will use and filter
-  train <- palmerpenguins::penguins %>%
+  train <- my_penguins %>%
     dplyr::select("body_mass_g",
            "bill_depth_mm",
            "bill_length_mm",
