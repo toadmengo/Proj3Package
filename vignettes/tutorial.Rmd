@@ -34,7 +34,7 @@ library(Proj3Package)
 
 ### my_t.test
 
-`my_t.test` runs a t-test on data. It has parameters: `x` is the numeric data, `alternative `is a character input that signifies the type of t-test, and `mu` is the null hypothesis value. `alternative` must be either "greater", "less", or "two.sided". 
+`my_t.test` runs a t-test on data. It has parameters: `x` is the numeric data, `alternative` is a character input that signifies the type of t-test, and `mu` is the null hypothesis value. `alternative` must be either "greater", "less", or "two.sided". 
 
 The following demonstrates a two-sided t-test on the `my_gapminder` `lifeExp` data. 
 This tests the hypothesis that mu ≠ 60.
@@ -93,8 +93,16 @@ actual <- my_gapminder$lifeExp
 dat <- cbind(fitted, actual)
 # plot actual vs fitted
 ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
-  geom_jitter()
+  geom_jitter() + 
+  labs(title = "Actual vs Fitted Values of Linear Model", 
+       x = "Actual", y = "Fitted") +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 The Fitted vs Actual plot seems to put heavy emphasis on continent, likely because GDP per-capita is only a strong determiner of life expectancy among wealthy nations. This is probably why the fitted values form flat layers, as the model is mostly predicting based on continent when GDP per-capita is low. When GDP per-capita is higher, it influences the model more, creating a less-flat shape of the graph. This may indicate that the model is not as strong when predicting life expectancy for low GDP per-capita nations, and that using a higher order polynomial for GDP per-capita may create a better fit.
+
+
+
+
+
 
