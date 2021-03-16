@@ -22,3 +22,4 @@ with response variable \code{body_mass_g}.
 my_rf_cv(5)
 
 }
+\keyword{prediction}

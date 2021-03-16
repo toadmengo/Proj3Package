@@ -6,6 +6,7 @@
 #' with response variable \code{body_mass_g}.
 #'
 #' @param k Numeric input representing number of folds for cross-validation.
+#' @keywords prediction
 #'
 #' @return Numeric representing MSE of the random forest.
 #'

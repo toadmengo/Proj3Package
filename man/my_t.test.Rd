@@ -32,3 +32,4 @@ my_t.test(c(1:10), "less", 4)
 my_t.test(c(1:5), "two.sided", 0)
 
 }
+\keyword{inference}

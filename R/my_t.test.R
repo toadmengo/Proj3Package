@@ -7,6 +7,7 @@
 #' \code{"less"}, or \code{"two.sided"}, corresponding to what hypothesis
 #' is being tested.
 #' @param mu The numeric null hypothesis value.
+#' @keywords inference
 #'
 #' @return List with values:
 #' test_stat - numeric representing test_statistic,

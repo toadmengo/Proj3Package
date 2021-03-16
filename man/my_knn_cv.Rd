@@ -28,3 +28,4 @@ my_knn_cv(iris[1:4], iris$Species, 5, 5)
 my_knn_cv(iris[1:4], iris$Species, 1, 5)
 
 }
+\keyword{prediction}

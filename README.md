@@ -14,6 +14,26 @@ You can install the released version of Proj3Package from [CRAN](https://CRAN.R-
 
 ``` r
 install.packages("Proj3Package")
+library(Proj3Package)
+```
+
+Or, install directly from Github using the `devtools` package.
+
+``` r
+devtools::install_github("toadmengo/Proj3Package")
+library(Proj3Package)
+```
+
+## Use
+
+The vignettes contains example usage of the functions in the package. To use the vignette, use the following code.
+
+```r
+library(Proj3Package)
+# Use this to view the vignette in the Proj3Package HTML help
+help(package = "Proj3Package", help_type = "html")
+# Use this to view the vignette as an isolated HTML file
+utils::browseVignettes(package = "Proj3Package")
 ```
 
 ## Example

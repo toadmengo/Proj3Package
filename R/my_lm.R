@@ -4,6 +4,7 @@
 #'
 #' @param lm_form Formula used to fit model.
 #' @param lm_data Numeric data used to fit model.
+#' @keywords prediction inference
 #'
 #' @return List with values:
 #' Estimate - numeric coefficient of line of best fit,

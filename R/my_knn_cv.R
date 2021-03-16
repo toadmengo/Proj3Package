@@ -6,6 +6,7 @@
 #' @param cl Factor of response variables.
 #' @param k_nn Integer representing number of nearest neighbors.
 #' @param k_cv Integer for number of folds in cross validation.
+#' @keywords prediction
 #'
 #' @return List with elements:
 #' class - Factor of classification using the training data,

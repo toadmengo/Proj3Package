@@ -25,3 +25,5 @@ This function fits a linear model using the data.
 my_lm(speed ~ dist, cars)
 
 }
+\keyword{inference}
+\keyword{prediction}
