@@ -133,8 +133,8 @@ cbind(k_nn, training_error, CV_error)
 
 ```
 
-Looking at the data, we see that the training error is lowest with k_nn = 1, meaning that the best model using
-the training data would be when k_nn = 1. In practice, we would use the k_nn with the lowest cross-validation error, which in this case is also k_nn = 1. We would use the lowest cross-validation error to guide our decision, since the training data is fitted for itself and the best-fitting model may overfit. As a result, we use cross-validation misclassification error to decide which model to use. In k-fold cross validation, the data is divided into k folds, and k_nn is performed, where one fold is the test set and the other folds are the training data. The errors of each fold are averaged, which yields the CV error. This lets us choose a model based on misclassification error without being too worried that the training data is overfitting.
+Looking at the data, we see that the training error is lowest with `k_nn` = 1, meaning that the best model using
+the training data would be when `k_nn` = 1. In practice, we would use the `k_nn` with the lowest cross-validation error, which in this case is also `k_nn` = 1. We would use the lowest cross-validation error to guide our decision, since the training data is fitted for itself and the best-fitting model may overfit. As a result, we use cross-validation misclassification error to decide which model to use. In k-fold cross validation, the data is divided into k folds where a fold is used as the test set, with the other folds being the training data. This process is repeated for all folds. The errors of each fold are averaged, which yields the CV error. This lets us choose a model based on misclassification error without being too worried about overfitting.
 
 ### my_rf_cv
 
