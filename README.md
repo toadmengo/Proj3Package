@@ -10,14 +10,7 @@ The goal of Proj3Package is to ...
 
 ## Installation
 
-You can install the released version of Proj3Package from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("Proj3Package")
-library(Proj3Package)
-```
-
-Or, install directly from Github using the `devtools` package.
+Install directly from Github using the `devtools` package.
 
 ``` r
 devtools::install_github("toadmengo/Proj3Package", build_vignettes = TRUE, build_opts = c())

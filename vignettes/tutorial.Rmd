@@ -82,14 +82,10 @@ Additionally, we can plot the Actual vs Fitted values.
 
 ```{r}
 library(ggplot2)
-# get the continents of each index
-my_gapminder$America <- my_gapminder$continent == "Americas"
-my_gapminder$Asia <- my_gapminder$continent == "Asia"
-my_gapminder$Europe <- my_gapminder$continent == "Europe"
-my_gapminder$Oceania <- my_gapminder$continent == "Oceania"
+estimate <- as.matrix(x[,1])
+x_mat <- model.matrix(lifeExp ~ gdpPercap + continent, my_gapminder)
 # predict data
-fitted <- x[1] + x[2] * my_gapminder$gdpPercap + 
-  as.matrix(my_gapminder[7:10]) %*% x[3:6]
+fitted <- x_mat %*% estimate
 # get the actual values
 actual <- my_gapminder$lifeExp
 dat <- cbind(fitted, actual)
