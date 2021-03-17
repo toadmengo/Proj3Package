@@ -162,7 +162,7 @@ rf_results <- data.frame(k = rf_group, MSE = MSE)
 # plot the box plot of the errors
 ggplot(data = rf_results, mapping = aes(x = k, y = MSE)) +
   geom_boxplot() +
-  labs(title = "Boxplot of MSE for 30 Random Forest Simulations per k-fold") +
+  labs(title = "MSE for RF Simulations") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ```
@@ -186,5 +186,5 @@ rf_stats <- as.table(rf_stat)
 rf_stats
 ```
 
-Based on the results, we can see that the mean cross-validation errors are similar across all k, but more variable when k is lower. For the means, the error is slightly higher among lower k-values, likely because there's less training data with less k-folds, but this difference isn't significant. However, the standard deviation is much higher with lower k, as there are less Mean Squared Errors to average when k is low, leading to more variance in the data. In other words, a fold cause an usually high error, but if k is higher, the error gets averaged out.
+Based on the results, we can see that the mean cross-validation errors are similar across all k, but more variable when k is lower. For the means, the error is slightly higher among lower k-values, likely because there's less training data with less k-folds, but this difference isn't significant. However, the standard deviation is much higher with lower k, as there are less Mean Squared Errors to average when k is low, leading to more variance in the data. In other words, a fold may cause an usually high/low error, but if k is higher, the error gets averaged out by more folds.
 
