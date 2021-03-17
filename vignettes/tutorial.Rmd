@@ -23,8 +23,6 @@ This package contains useful statistical functions for t-tests, linear regressio
 library(devtools)
 # basic install
 install_github("toadmengo/Proj3Package")
-# alternatively, install from CRAN
-install.packages("Proj3Package")
 ```
 
 ```{r setup}
@@ -98,7 +96,7 @@ dat <- cbind(fitted, actual)
 # plot actual vs fitted
 ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
   geom_jitter() + 
-  labs(title = "Actual vs Fitted Values of Model", 
+  labs(title = "Actual vs Fitted Values", 
        x = "Actual", y = "Fitted") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
