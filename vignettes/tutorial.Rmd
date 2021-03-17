@@ -17,15 +17,14 @@ knitr::opts_chunk$set(
 
 ### Installing Package
 
-This package contains useful statistical functions for t-tests, linear regression, K nearest neighbors cross-validation, and random forest cross-validation. It also contains the data my_gapminder. To install from github, use the devtools package.
+This package contains useful statistical functions for t-tests, linear regression, K nearest neighbors cross-validation, and random forest cross-validation. It also contains the data `my_gapminder` and `my_penguins`. To install from github, use the devtools package.
 
 ```{r, eval=FALSE}
 library(devtools)
 # basic install
 install_github("toadmengo/Proj3Package")
-# install with vignette
-install_github("toadmengo/Proj3Package", 
-               build_vignette = TRUE, build_opts = c())
+# alternatively, install from CRAN
+install.packages("Proj3Package")
 ```
 
 ```{r setup}
@@ -45,7 +44,7 @@ x <- my_gapminder$lifeExp
 my_t.test(x, "two.sided", 60)
 ```
 
-Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is greater than 60.
+Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is not equal to 60.
 
 We can test for mu < 60.
 
@@ -63,7 +62,7 @@ We can test mu > 60.
 my_t.test(x, "greater", 60)
 ```
 
-Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is not equal to 60.
+Using α = 0.05 as the cut-off p-value, we would fail to reject the null hypothesis, as the t-test yields a p-value greater than α. There isn't enough evidence to suggest that mean life expectancy is greater than 60.
 
 ### my_lm
 
@@ -99,7 +98,7 @@ dat <- cbind(fitted, actual)
 # plot actual vs fitted
 ggplot(data = as.data.frame(dat), mapping = aes(x = actual, y = fitted)) +
   geom_jitter() + 
-  labs(title = "Actual vs Fitted Values of Linear Model", 
+  labs(title = "Actual vs Fitted Values of Model", 
        x = "Actual", y = "Fitted") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
@@ -108,7 +107,7 @@ The Fitted vs Actual plot seems to put heavy emphasis on continent, likely becau
 
 ### my_knn_cv
 
-This function predicts a category using k-nearest neighbor and performs k-fold cross validation. It uses parameters: `train`, the explanatory variables from training data. `cl`, the response variables. `k_nn`, an integer representing the number of nearest neighbors. And `k_cv`, an integer for the number of folds in the cross-validation. It returns a list with `class`, a factor of the predicted response variables, and `cv_err`, a numeric representing the CV error.
+This function predicts a category using k-nearest neighbor and performs k-fold cross validation. It uses parameters: `train`, the explanatory variables from training data. `cl`, the response variables, `k_nn`, an integer representing the number of nearest neighbors, and `k_cv`, an integer for the number of folds in the cross-validation. It returns a list with `class`, a factor of the predicted response variables, and `cv_err`, a numeric representing the CV error.
 
 Here, we will use `my_knn_cv` on the `my_penguins` data, using `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, and `body_mass_g` to predict `species`. We will investigate the best `k_nn` from 1 to 10, using `k_cv` = 5.
 
@@ -139,7 +138,7 @@ cbind(k_nn, training_error, CV_error)
 ```
 
 Looking at the data, we see that the training error is lowest with `k_nn` = 1, meaning that the best model using
-the training data would be when `k_nn` = 1. In practice, we would use the `k_nn` with the lowest cross-validation error, which in this case is also `k_nn` = 1. We would use the lowest cross-validation error to guide our decision, since the training data is fitted for itself and the best-fitting model may overfit. As a result, we use cross-validation misclassification error to decide which model to use. In k-fold cross validation, the data is divided into k folds where a fold is used as the test set, with the other folds being the training data. This process is repeated for all folds. The errors of each fold are averaged, which yields the CV error. This lets us choose a model based on misclassification error without being too worried about overfitting.
+the training data would be when `k_nn` = 1. In practice, we would use the `k_nn` with the lowest cross-validation error, which in this case is also `k_nn` = 1. We would use the lowest cross-validation error to guide our decision, since the training data is fitted for itself and the best-fitting model may overfit. As a result, we use cross-validation misclassification error to decide which model to use. In k-fold cross validation, the data is divided into k folds where a fold is used as the test set, with the other folds being the training data. This process is repeated for all folds. The errors of each fold are averaged, which yields the CV error. This lets us choose a model based on misclassification error without being too worried about overfitting, since the error is for a seperate set and averaged among several sets.
 
 ### my_rf_cv
 
@@ -189,5 +188,5 @@ rf_stats <- as.table(rf_stat)
 rf_stats
 ```
 
-Based on the results, we can see that the mean cross-validation errors are similar across all k, but more variable when k is lower. For the means, the error is slightly higher among lower k-values, likely because there's less training data with less k-folds, but this difference isn't significant. However, the standard deviation is much higher with lower k, as there are less Mean Squared Errors to average when k is low, leading to more variance in the data.
+Based on the results, we can see that the mean cross-validation errors are similar across all k, but more variable when k is lower. For the means, the error is slightly higher among lower k-values, likely because there's less training data with less k-folds, but this difference isn't significant. However, the standard deviation is much higher with lower k, as there are less Mean Squared Errors to average when k is low, leading to more variance in the data. In other words, a fold cause an usually high error, but if k is higher, the error gets averaged out.
 
