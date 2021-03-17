@@ -20,7 +20,7 @@ library(Proj3Package)
 Or, install directly from Github using the `devtools` package.
 
 ``` r
-devtools::install_github("toadmengo/Proj3Package")
+devtools::install_github("toadmengo/Proj3Package", build_vignettes = TRUE, build_opts = c())
 library(Proj3Package)
 ```
 

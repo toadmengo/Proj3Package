@@ -9,8 +9,8 @@
 #' @keywords prediction
 #'
 #' @return List with elements:
-#' class - Factor of classification using the training data,
-#' cv_err - Numeric representing cross-validation error.
+#' \code{class} - Factor of classification using the training data,
+#' \code{cv_err} - Numeric representing cross-validation error.
 #'
 #' @examples
 #' my_knn_cv(iris[1:4], iris$Species, 5, 5)

@@ -10,11 +10,11 @@
 #' @keywords inference
 #'
 #' @return List with values:
-#' test_stat - numeric representing test_statistic,
-#' df - numeric representing degrees of freedom,
-#' alternative - character either "greater", "less", or "two.sided", representing
+#' \code{test_stat} - Numeric representing test_statistic,
+#' \code{df} - Numeric representing degrees of freedom,
+#' \code{alternative} - Character either "greater", "less", or "two.sided", representing
 #' type of t-test,
-#' p_val - numeric representing the p-value.
+#' \code{p_val} - Numeric representing the p-value.
 #'
 #' @examples
 #' my_t.test(c(1:5), "greater", 4)
@@ -49,8 +49,3 @@ my_t.test <- function(x, alternative, mu) {
                       "p_val" = p_val)
   return(return_list)
 }
-
-# test the function
-x <- rnorm(100, mean = 0, sd = 1)
-my_t.test(x, alternative = "two.sided", mu = .5)
-t.test(x, alternative = "two.sided", mu = -.5)

@@ -17,8 +17,8 @@ my_knn_cv(train, cl, k_nn, k_cv)
 }
 \value{
 List with elements:
-class - Factor of classification using the training data,
-cv_err - Numeric representing cross-validation error.
+\code{class} - Factor of classification using the training data,
+\code{cv_err} - Numeric representing cross-validation error.
 }
 \description{
 Performs a KNN cross-validation test.

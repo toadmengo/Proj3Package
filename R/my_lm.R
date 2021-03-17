@@ -7,10 +7,10 @@
 #' @keywords prediction inference
 #'
 #' @return List with values:
-#' Estimate - numeric coefficient of line of best fit,
-#' Std. Error - numeric representing the standard error of coefficients,
-#' t value - numeric test-statistic of coefficient,
-#' Pr(>|t|) - numeric p-value of coefficient.
+#' \code{Estimate} - Numeric coefficient of gitted model,
+#' \code{Std. Error} - Numeric standard error of coefficient,
+#' \code{t value} - Numeric test-statistic of coefficient,
+#' \code{Pr(>|t|)} - Numeric p-value of coefficient.
 #'
 #' @examples
 #' my_lm(speed ~ dist, cars)

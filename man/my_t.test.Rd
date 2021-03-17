@@ -17,11 +17,11 @@ is being tested.}
 }
 \value{
 List with values:
-test_stat - numeric representing test_statistic,
-df - numeric representing degrees of freedom,
-alternative - character either "greater", "less", or "two.sided", representing
+\code{test_stat} - Numeric representing test_statistic,
+\code{df} - Numeric representing degrees of freedom,
+\code{alternative} - Character either "greater", "less", or "two.sided", representing
 type of t-test,
-p_val - numeric representing the p-value.
+\code{p_val} - Numeric representing the p-value.
 }
 \description{
 This function performs a one sample t-test.

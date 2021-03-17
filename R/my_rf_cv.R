@@ -1,17 +1,18 @@
 #' Random Forest Cross-Validation
 #'
 #' Performs a random forest cross-validation test specific to the
-#' \code{palmerpenguins} dataset, with variables
-#' \code{bill_depth_mm}, \code{bill_length_mm}, \code{flipper_length_mm},
-#' with response variable \code{body_mass_g}.
+#' \code{my_penguins} dataset, with variables
+#' \code{bill_depth_mm}, \code{bill_length_mm}, \code{flipper_length_mm}
+#' and response variable \code{body_mass_g}.
 #'
 #' @param k Numeric input representing number of folds for cross-validation.
 #' @keywords prediction
 #'
-#' @return Numeric representing MSE of the random forest.
+#' @return Numeric representing average MSE of the k-fold simulations.
 #'
 #' @examples
 #' my_rf_cv(5)
+#' my_rf_cv(3)
 #'
 #' @export
 my_rf_cv <- function(k) {
