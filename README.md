@@ -13,6 +13,7 @@ The goal of Proj3Package is to ...
 Install directly from Github using the `devtools` package.
 
 ``` r
+#install.packages("devtools")
 devtools::install_github("toadmengo/Proj3Package", build_vignettes = TRUE, build_opts = c())
 library(Proj3Package)
 ```
