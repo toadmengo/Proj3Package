@@ -30,12 +30,4 @@ help(package = "Proj3Package", help_type = "html")
 utils::browseVignettes(package = "Proj3Package")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(Proj3Package)
-## basic example code
-```
 
